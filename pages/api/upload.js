@@ -1,5 +1,5 @@
 import { IncomingForm } from 'formidable';
-import fs from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
 import { uploadToGitHub } from '../../lib/uploadToGitHub';
 
@@ -17,11 +17,6 @@ export default async function handler(req, res) {
   }
 
   const form = new IncomingForm({ multiples: true });
-
-  form.parse(req, async (err, fields, files) => {
-    // ...gerisi aynı
-  });
-}
 
   form.parse(req, async (err, fields, files) => {
     if (err) {
@@ -44,14 +39,13 @@ export default async function handler(req, res) {
     }
 
     try {
-      // Dosyaları tmp'ye taşıyoruz
       const filesWithTmpPaths = await Promise.all(
         uploadedFiles.map(async (file) => {
           const tmpPath = path.join('/tmp', file.originalFilename);
           await fs.copyFile(file.filepath, tmpPath);
           return {
             ...file,
-            filepath: tmpPath, // önemli: filepath'i tmp'ye güncelledik
+            filepath: tmpPath,
           };
         })
       );
