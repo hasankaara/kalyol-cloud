@@ -1,5 +1,5 @@
-import formidable from 'formidable';
-import fs from 'fs/promises';
+import { IncomingForm } from 'formidable';
+import fs from 'fs';
 import path from 'path';
 import { uploadToGitHub } from '../../lib/uploadToGitHub';
 
@@ -16,7 +16,12 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Sadece POST destekleniyor' });
   }
 
-  const form = new formidable.IncomingForm({ multiples: true });
+  const form = new IncomingForm({ multiples: true });
+
+  form.parse(req, async (err, fields, files) => {
+    // ...gerisi aynı
+  });
+}
 
   form.parse(req, async (err, fields, files) => {
     if (err) {
