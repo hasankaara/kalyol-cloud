@@ -5,7 +5,7 @@ const GITHUB_API = 'https://api.github.com';
 
 // Buraya tam token’ını yapıştır, tırnak içinde ve eksiksiz!
 // Bunu kesinlikle kimseyle paylaşma!
-const token = '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';
+const token = 'ghp_I0VIM1sCsqVMKk0SwKFfIwsXgeGVdH0kWle';
 const username = 'hasankaara';
 
 async function createRepo(name) {
