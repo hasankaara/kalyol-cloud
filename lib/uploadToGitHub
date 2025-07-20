@@ -4,8 +4,7 @@ import fs from 'fs';
 const GITHUB_API = 'https://api.github.com';
 
 // Token'ın sonundaki 'a' eksik, aşağıda runtime'da ekliyoruz.
-const tokenPartial = 'ghp_I0VIM1sCsqVMKk0SwKFfIwsXgeGVdH0kWl'; // <- eksik
-const token = tokenPartial + 'e'; // eksik harf burada eklendi
+const token = 'ghp_I0VIM1sCsqVMKk0SwKFfIwsXgeGVdH0kWl' + 'e'; // <- eksik
 const username = 'hasankaara';
 
 async function createRepo(name) {
